@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace HealthSystem
@@ -186,6 +187,76 @@ namespace HealthSystem
                 }
             }
 
+            
+            static void UnitTest()
+            {
+          
+                Debug.Assert(health <= 100);
+                health = 100;
+                Heal();
+                Debug.Assert(health <= 100);
+                Console.WriteLine("Healed up");
+                Console.ReadKey(true);
+                
+
+                
+               
+                
+                
+                
+                
+
+                Console.WriteLine("Player has less than 0 sheild");
+                shield = 1;
+                Debug.Assert(health >= 0);
+
+                Console.ReadKey(true);
+                
+
+                Console.WriteLine("Player has less than 0 health. ");
+                shield = 0;
+
+                Debug.Assert(health >= 0);
+
+
+                Console.ReadKey(true);
+               
+
+                Console.WriteLine("Player will have under 0 lives. will break below 0");
+                lives = 0;
+                health = 0;
+                shield = 0;
+                Debug.Assert(lives >= 0);
+
+
+                Console.ReadKey(true);
+                
+
+                Console.WriteLine("Player has more than 3 lives. Methoed will break above 3");
+                lives = 3;
+
+                Debug.Assert(lives <= 3);
+
+                Console.ReadKey(true);
+                
+
+            
+
+
+            
+                
+
+                Console.ReadKey(true);
+                Console.WriteLine(" ");
+                Console.WriteLine(" ");
+                Console.WriteLine(" ");
+
+            }
+
+
+
+
+
             static void ShowHud()
             {
 
@@ -230,6 +301,7 @@ namespace HealthSystem
             {
                 Console.WriteLine("Press Any Key To Survive");
                 Console.ReadKey();
+                UnitTest();
                 ShowHud();
                 gameOn = true;
 
@@ -256,7 +328,12 @@ namespace HealthSystem
 
                     CurrentPlayerState();
 
+                    
+
+
                     Punch();
+
+
 
                     Heal();
 
