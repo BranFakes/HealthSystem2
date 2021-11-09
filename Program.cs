@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace HealthSystem
@@ -18,9 +19,6 @@ namespace HealthSystem
         class Program
         {
             static int healthPotion;
-
-
-
             static int lives = 3;
 
             static string[] HPStates = new string[6];
@@ -28,17 +26,13 @@ namespace HealthSystem
             static int health = 100;
             static int shield = 100;
 
-
             static bool Attacking = false;
             static bool Healing = false;
             static bool gameOn = false;
 
-
-
             static int enemyHealth = 450;
 
             static System.Random Random = new System.Random();
-
 
             static int playerState = 0;
             static int Pdmg;
@@ -50,6 +44,8 @@ namespace HealthSystem
 
             static void CurrentPlayerState()
             {
+                // Good states, keep this for extra mile.
+
                 playerState = Random.Next(1, 2);
 
 
@@ -67,7 +63,7 @@ namespace HealthSystem
                 }
             }
 
-            static void HealthState()
+            static void HealthState() // tidy up names
             {
                 if (health >= 75)
                 {
@@ -131,8 +127,9 @@ namespace HealthSystem
                 }
             }
 
-            static void DamageTaken()
+            static void DamageTaken() // tidy up names TakeDamage not DamageTaken
             {
+
                 Edmg = Random.Next(1, 50);
 
                 shield = shield - Edmg;
@@ -166,6 +163,8 @@ namespace HealthSystem
             {
                 if (Healing == true)
                 {
+                    // randomizing is EXTREAMLY DANGEROUS for UNIT TESTING
+                    // if you want to do randomize put it outside. Good extra mile tho.
                     healthPotion = Random.Next(1, 50);
 
                     health = health + healthPotion;
@@ -185,6 +184,53 @@ namespace HealthSystem
                     }
                 }
             }
+
+            
+            static void UnitTest()
+            {
+          
+                
+                health = 90;
+                Heal();
+                Debug.Assert(health == 100);
+                Console.WriteLine("Healed up");
+                
+                                         
+                              
+                              
+                
+                Console.WriteLine("Player has less than 0 sheild");
+                shield = 1;
+                Debug.Assert(health == 0);
+                
+                
+                Console.WriteLine("Player has less than 0 health. ");
+                shield = 0;
+                Debug.Assert(health == 0);
+                                               
+               
+
+                Console.WriteLine("Player will have under 0 lives. will break below 0");
+                lives = 0;
+                health = 0;
+                shield = 0;
+                Debug.Assert(lives == 0);
+
+
+                Console.ReadKey(true);
+                
+
+                Console.WriteLine("Player has more than 3 lives. Methoed will break above 3");
+                lives = 3;
+
+                Debug.Assert(lives <= 3);
+                        
+                          
+            }
+
+
+
+
 
             static void ShowHud()
             {
@@ -207,15 +253,10 @@ namespace HealthSystem
             static void Array()
             {
                 HPStates[0] = " Health In Green Zone ";
-
                 HPStates[1] = " You took a bit of damage ";
-
                 HPStates[2] = " You're Hurt ";
-
                 HPStates[3] = " You Must Do Something Quick! ";
-
                 HPStates[4] = " You Feel Like Theres Only One More Chance ";
-
                 HPStates[5] = " *Dark Souls Death Sound* YOU DIED... ";
             }
 
@@ -230,38 +271,21 @@ namespace HealthSystem
             {
                 Console.WriteLine("Press Any Key To Survive");
                 Console.ReadKey();
+                UnitTest();
                 ShowHud();
                 gameOn = true;
 
                 while (gameOn == true)
                 {
-                    if (enemyHealth <= 0)
-                    {
-
-                        break;
-
-                    }
-
-                    if (lives <= 0)
-                    {
-
-                        break;
-                    }
-
-
-
-
-
+                    if (enemyHealth <= 0) break;                   
+                                   
+                    if (lives <= 0) break;
+                                                    
                     Array();
-
                     CurrentPlayerState();
-
                     Punch();
-
                     Heal();
-
                     DamageTaken();
-
                     ShowHud();
                 }
 
