@@ -19,6 +19,9 @@ namespace HealthSystem
         class Program
         {
             static int healthPotion;
+
+
+
             static int lives = 3;
 
             static string[] HPStates = new string[6];
@@ -26,9 +29,11 @@ namespace HealthSystem
             static int health = 100;
             static int shield = 100;
 
+
             static bool Attacking = false;
             static bool Healing = false;
             static bool gameOn = false;
+
 
             static int enemyHealth = 450;
 
@@ -63,7 +68,7 @@ namespace HealthSystem
                 }
             }
 
-            static void HealthState() // tidy up names
+            static void HealthState()
             {
                 if (health >= 75)
                 {
@@ -127,9 +132,8 @@ namespace HealthSystem
                 }
             }
 
-            static void DamageTaken() // tidy up names TakeDamage not DamageTaken
+            static void DamageTaken()
             {
-
                 Edmg = Random.Next(1, 50);
 
                 shield = shield - Edmg;
@@ -189,9 +193,8 @@ namespace HealthSystem
             static void UnitTest()
             {
           
-
                 
-                health = 90;
+                health = 100;
                 Heal();
                 Debug.Assert(health == 100);
                 Console.WriteLine("Healed up");
@@ -209,48 +212,13 @@ namespace HealthSystem
                 shield = 0;
                 Debug.Assert(health == 0);
                                                
-
-                Debug.Assert(health <= 100);
-                health = 100;
-                Heal();
-                Debug.Assert(health <= 100);
-                Console.WriteLine("Healed up");
-                Console.ReadKey(true);
-                
-
-                
-               
-                
-                
-                
-                
-
-                Console.WriteLine("Player has less than 0 sheild");
-                shield = 1;
-                Debug.Assert(health >= 0);
-
-                Console.ReadKey(true);
-                
-
-                Console.WriteLine("Player has less than 0 health. ");
-                shield = 0;
-
-                Debug.Assert(health >= 0);
-
-
-                Console.ReadKey(true);
-
                
 
                 Console.WriteLine("Player will have under 0 lives. will break below 0");
                 lives = 0;
                 health = 0;
                 shield = 0;
-
                 Debug.Assert(lives == 0);
-
-                Debug.Assert(lives >= 0);
-
 
 
                 Console.ReadKey(true);
@@ -260,26 +228,8 @@ namespace HealthSystem
                 lives = 3;
 
                 Debug.Assert(lives <= 3);
-
                         
                           
-
-
-                Console.ReadKey(true);
-                
-
-            
-
-
-            
-                
-
-                Console.ReadKey(true);
-                Console.WriteLine(" ");
-                Console.WriteLine(" ");
-                Console.WriteLine(" ");
-
-
             }
 
 
@@ -337,18 +287,7 @@ namespace HealthSystem
                                                     
                     Array();
                     CurrentPlayerState();
-
                     Punch();
-
-
-                    
-
-
-                    Punch();
-
-
-
-
                     Heal();
                     DamageTaken();
                     ShowHud();
