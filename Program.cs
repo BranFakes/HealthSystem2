@@ -189,6 +189,7 @@ namespace HealthSystem
             static void UnitTest()
             {
           
+
                 
                 health = 90;
                 Heal();
@@ -208,13 +209,48 @@ namespace HealthSystem
                 shield = 0;
                 Debug.Assert(health == 0);
                                                
+
+                Debug.Assert(health <= 100);
+                health = 100;
+                Heal();
+                Debug.Assert(health <= 100);
+                Console.WriteLine("Healed up");
+                Console.ReadKey(true);
+                
+
+                
+               
+                
+                
+                
+                
+
+                Console.WriteLine("Player has less than 0 sheild");
+                shield = 1;
+                Debug.Assert(health >= 0);
+
+                Console.ReadKey(true);
+                
+
+                Console.WriteLine("Player has less than 0 health. ");
+                shield = 0;
+
+                Debug.Assert(health >= 0);
+
+
+                Console.ReadKey(true);
+
                
 
                 Console.WriteLine("Player will have under 0 lives. will break below 0");
                 lives = 0;
                 health = 0;
                 shield = 0;
+
                 Debug.Assert(lives == 0);
+
+                Debug.Assert(lives >= 0);
+
 
 
                 Console.ReadKey(true);
@@ -224,8 +260,26 @@ namespace HealthSystem
                 lives = 3;
 
                 Debug.Assert(lives <= 3);
+
                         
                           
+
+
+                Console.ReadKey(true);
+                
+
+            
+
+
+            
+                
+
+                Console.ReadKey(true);
+                Console.WriteLine(" ");
+                Console.WriteLine(" ");
+                Console.WriteLine(" ");
+
+
             }
 
 
@@ -283,7 +337,18 @@ namespace HealthSystem
                                                     
                     Array();
                     CurrentPlayerState();
+
                     Punch();
+
+
+                    
+
+
+                    Punch();
+
+
+
+
                     Heal();
                     DamageTaken();
                     ShowHud();
